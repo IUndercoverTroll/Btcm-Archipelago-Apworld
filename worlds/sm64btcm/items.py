@@ -40,5 +40,5 @@ def create_single_item(world: BTCMWorld, name: str) -> BTCMItem:
 
     return BTCMItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
-def get_random_filler_item_name(world: APQuestWorld) -> str:
+def get_random_filler_item_name(world: BTCMWorld) -> str:
     return "Blue Star"
