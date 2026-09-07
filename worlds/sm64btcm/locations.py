@@ -51,6 +51,7 @@ VP_table = {
     "VP: DIGITAL VORTEX OF DEATH": 33,
     "VP: 100 BYTECOINS": 34,
     "VP: THE EXECUTIVE": 35,
+    # "Virtuaplex Switch": 115,
 }
 
 CC_table = {
@@ -101,6 +102,7 @@ BB_table = {
     "BB: TUBING DOWN THE TUNNEL": 68,
     "BB: HAMMER BRO HUNDREDS": 69,
     "BB: THE 5000 IQ SUPERQUIZ": 70,
+    # "Blueberg Switch": 116,
 }
 
 SiSt_table = {
@@ -164,13 +166,14 @@ SwtS_table = {
     "Showdown with the Showrunner Defeat The Showrunner": 110,
 }
 
-Other_table = {
+SSS_table = {
     "Sloppy Shell Sewers Red Coins": 111,
     #"Sloppy Shell Sewers Switch": 112,
+}
+
+LS_table = {
     "Lost City Red Coins": 113,
-    #"Lost City Switch": 114,
-    #"Virtuaplex Switch": 115,
-    #"Blueberg Switch": 116,
+    # "Lost City Switch": 114,
 }
 
 Minigame_table = {
@@ -211,5 +214,7 @@ Minigame_table = {
     "Save Shatter Burden": 148,
 }"""
 
-location_table = {**RHR_table,**LFF_table,**JS_table,**TPS_table,**VP_table,**CC_table,**IR_table,**RL_table,**TT_table,**BB_table,**SiSt_table,**OK_table,**HuHa_table,**TFE_table
-                  **ToT_table,**BotH_table,**SwtS_table,**Other_table,**Minigame_table}
+location_table = {**RHR_table,**LFF_table,**JS_table,**TPS_table,**VP_table,
+                  **CC_table,**IR_table,**RL_table,**TT_table,**BB_table,
+                  **SiSt_table,**OK_table,**HuHa_table,**TFE_table,**ToT_table,
+                  **BotH_table,**SwtS_table,**SSS_table,**LS_table,**Minigame_table}
