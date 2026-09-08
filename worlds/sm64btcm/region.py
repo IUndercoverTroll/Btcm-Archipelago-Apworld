@@ -1,12 +1,9 @@
-from BaseClasses import Entrance, Region
-from .world import BTCMWorld
+from BaseClasses import Region
 
 from .locations import RHR_table,LFF_table,JS_table,TPS_table,VP_table, \
     CC_table,IR_table,RL_table,TT_table,BB_table, \
     SiSt_table,OK_table,HuHa_table,TFE_table,ToT_table, \
-    BotH_table,SwtS_table,SSS_table,LS_table,Minigame_table, location_table, BTCMLocation
-
-region_dict = {}
+    BotH_table,SwtS_table,SSS_table,LS_table,Minigame_table, BTCMLocation
 
 def create_all_regions(world: BTCMWorld):
     starting_room = Region("Starting Room", world.player, world.multiworld)
@@ -36,17 +33,17 @@ def create_all_regions(world: BTCMWorld):
     sloppy_shell_sewers = Region("Sloppy Shell Sewers", world.player, world.multiworld)
     lost_city = Region("Lost City", world.player, world.multiworld)
 
-    regions = [starting_room,observatory,sinful_starfair, \
-               agamemnon,red_hot_reservoir,lonely_floating_farm, jurassic_savanna, \
-               the_phantom_strider,virtuaplex,cowboy_canyon,immense_residence, \
-               retroland, thwomp_towers, blueberg, orchestral_keys, hushed_haven, \
-               the_final_empire,trials_of_terminus,prehistoric_research_room,bowser_on_the_highway, \
+    regions = [starting_room,observatory,sinful_starfair,
+               agamemnon,red_hot_reservoir,lonely_floating_farm, jurassic_savanna,
+               the_phantom_strider,virtuaplex,cowboy_canyon,immense_residence,
+               retroland, thwomp_towers, blueberg, orchestral_keys, hushed_haven,
+               the_final_empire,trials_of_terminus,prehistoric_research_room,bowser_on_the_highway,
                showdown_with_the_showrunner, sloppy_shell_sewers, lost_city]
 
     world.multiworld.regions += regions
 
-    region_dict = {
-        starting_room: [red_hot_reservoir, lonely_floating_farm,the_phantom_strider, virtuaplex, \
+    world.region_dict = {
+        starting_room: [red_hot_reservoir, lonely_floating_farm,the_phantom_strider, virtuaplex,
                         sinful_starfair,observatory,prehistoric_research_room,bowser_on_the_highway],
         prehistoric_research_room: [sloppy_shell_sewers, jurassic_savanna],
         observatory: [cowboy_canyon, immense_residence, thwomp_towers],
@@ -56,7 +53,7 @@ def create_all_regions(world: BTCMWorld):
         agamemnon: [orchestral_keys, hushed_haven,the_final_empire,trials_of_terminus],
     }
 
-def connect_regions(world: BTCMWorld):
+def connect_regions(world: BTCMWorld, region_dict: dict):
     #For every value associated with a key, connect the value to the key
     for i in region_dict:
         for j in region_dict[i]:
