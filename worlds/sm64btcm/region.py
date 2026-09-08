@@ -1,4 +1,9 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
 from BaseClasses import Region
+
+if TYPE_CHECKING:
+    from .world import BTCMWorld
 
 from .locations import RHR_table,LFF_table,JS_table,TPS_table,VP_table, \
     CC_table,IR_table,RL_table,TT_table,BB_table, \
@@ -28,7 +33,7 @@ def create_all_regions(world: BTCMWorld):
     trials_of_terminus = Region("Trials of Terminus", world.player, world.multiworld)
 
     prehistoric_research_room = Region("Prehistoric Research Room", world.player, world.multiworld)
-    bowser_on_the_highway = Region("Bowser on The Highway", world.player, world.multiworld)
+    bowser_on_the_highway = Region("Bowser on the Highway", world.player, world.multiworld)
     showdown_with_the_showrunner = Region("Showdown with The Showrunner", world.player, world.multiworld)
     sloppy_shell_sewers = Region("Sloppy Shell Sewers", world.player, world.multiworld)
     lost_city = Region("Lost City", world.player, world.multiworld)
@@ -77,6 +82,6 @@ def connect_regions(world: BTCMWorld, region_dict: dict):
 
     world.get_region("Observatory").add_locations(Minigame_table, BTCMLocation)
     world.get_region("Bowser on the Highway").add_locations(BotH_table, BTCMLocation)
-    world.get_region("Showdown with the Showrunner").add_locations(SwtS_table, BTCMLocation)
+    world.get_region("Showdown with The Showrunner").add_locations(SwtS_table, BTCMLocation)
     world.get_region("Sloppy Shell Sewers").add_locations(SSS_table, BTCMLocation)
     world.get_region("Lost City").add_locations(LS_table, BTCMLocation)

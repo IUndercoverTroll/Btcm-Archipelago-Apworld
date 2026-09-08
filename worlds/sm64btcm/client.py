@@ -38,7 +38,7 @@ class BTCMClient(BizHawkClient):
             reads = [
                 (courseStarsPtr, 25, "RDRAM"), #0
             ]
-            read = await bizhawk.read(ctx.bizhawk_ctx, reads)
+            read = []#await bizhawk.read(ctx.bizhawk_ctx, reads)
             #Check which locations have been checked and send them
             locs_to_send = []
             current_star = 0
@@ -49,7 +49,7 @@ class BTCMClient(BizHawkClient):
                         continue
                     if bit:
                         locs_to_send.append(current_star)
-            await ctx.send_msgs([{"cmd": "LocationChecks","locations": [locs_to_send]}])
+#           await ctx.send_msgs([{"cmd": "LocationChecks","locations": locs_to_send}])
 
             writes = []
             power_stars = 0
