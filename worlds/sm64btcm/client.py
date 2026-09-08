@@ -8,8 +8,8 @@ if TYPE_CHECKING:
 
 saveFileBufferPtr = 0x89CB0
 courseStarsPtr = saveFileBufferPtr + 0x14
-numStarsPtr = saveFileBufferPtr + 0x53
-numMetalStarsPtr = saveFileBufferPtr + 0x57
+numStarsPtr = saveFileBufferPtr + 0x4F
+numMetalStarsPtr = saveFileBufferPtr + 0x53
 
 class BTCMClient(BizHawkClient):
 #Despite the fact this is a "BizHawkClient", this is not meant to use BizHawk
@@ -18,9 +18,7 @@ class BTCMClient(BizHawkClient):
     system = "N64"
 
     async def validate_rom(self, ctx: "BizHawkClientContext") -> bool:
-        from CommonClient import logger
         try:
-            logger.warning("Hi")
             # Check ROM name/patch version
             rom_name = ((await bizhawk.read(ctx.bizhawk_ctx, [(0x20, 20, "ROM")]))[0]).decode("ascii")
             if rom_name != "SM64 BTCM ARCH      ":
@@ -47,13 +45,14 @@ class BTCMClient(BizHawkClient):
             current_star = 0
             for byte in list(read[0]):
                 for index, bit in enumerate(reversed(bin(byte))):
-                    current_star += 1
                     if index >= 7:
                         continue
+                    else:
+                        current_star += 1
                     if bit == "1":
                         locs_to_send.append(current_star)
             await ctx.send_msgs([{"cmd": "LocationChecks","locations": locs_to_send}])
-
+            #Check which items have been received and change the game state accordingly
             writes = []
             power_stars = 0
             cosmic_seeds = 0
@@ -68,10 +67,8 @@ class BTCMClient(BizHawkClient):
                 power_stars = 255
             if cosmic_seeds > 255:
                 cosmic_seeds = 255
-            logger.info("Hi")
-            logger.info(power_stars)
-            writes.append((numStarsPtr, power_stars, "RDRAM"))
-            writes.append((numMetalStarsPtr, cosmic_seeds, "RDRAM"))
+            writes.append((numStarsPtr, power_stars.to_bytes(), "RDRAM"))
+            writes.append((numMetalStarsPtr, cosmic_seeds.to_bytes(), "RDRAM"))
             await bizhawk.write(ctx.bizhawk_ctx, writes)
 
         except bizhawk.RequestFailedError:
