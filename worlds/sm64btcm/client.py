@@ -1,8 +1,10 @@
+from typing_extensions import TYPE_CHECKING
 from worlds._bizhawk.client import BizHawkClient
 import worlds._bizhawk as bizhawk
 from .data import btcm_items
 
-from worlds._bizhawk.context import BizHawkClientContext
+if TYPE_CHECKING:
+    from worlds._bizhawk.context import BizHawkClientContext
 
 saveFileBufferPtr = 0x89CB0
 courseStarsPtr = saveFileBufferPtr + 0x14

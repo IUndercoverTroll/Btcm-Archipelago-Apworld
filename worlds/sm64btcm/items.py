@@ -1,6 +1,8 @@
 from BaseClasses import ItemClassification, Item
-from worlds.sm64btcm import BTCMWorld
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from .world import BTCMWorld
 
 class BTCMItem(Item):
     game = "Super Mario 64: Beyond the Cursed Mirror"
