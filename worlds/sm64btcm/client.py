@@ -10,6 +10,7 @@ saveFileBufferPtr = 0x89CB0
 courseStarsPtr = saveFileBufferPtr + 0x14
 numStarsPtr = saveFileBufferPtr + 0x4F
 numMetalStarsPtr = saveFileBufferPtr + 0x53
+flagsPtr  = saveFileBufferPtr + 0x10
 
 class BTCMClient(BizHawkClient):
 #Despite the fact this is a "BizHawkClient", this is not meant to use BizHawk
@@ -38,19 +39,29 @@ class BTCMClient(BizHawkClient):
         try:
             reads = [
                 (courseStarsPtr, 25, "RDRAM"), #0
+                (flagsPtr, 4, "RDRAM"), #1
             ]
             read = await bizhawk.read(ctx.bizhawk_ctx, reads)
             #Check which locations have been checked and send them
+            #First up is all of the course stars
             locs_to_send = []
             current_star = 0
             for byte in list(read[0]):
-                for index, bit in enumerate(reversed(bin(byte))):
+                for index, bit in enumerate(reversed(format(byte,"08b"))):
                     if index >= 7:
                         continue
                     else:
                         current_star += 1
                     if bit == "1":
-                        locs_to_send.append(current_star)
+                        locs_to_send.append(current_star) #Most star locations are indexed at what bit they are stored at in the course stars variable
+            #Next Up is the flags (which includes the stars from minigames)
+            idx = 1
+            for byte in list(read[1]):
+                for bit in format(byte,"08b"):
+                    if bit == "1":
+                        locs_to_send.append(idx + 1000) #All Flag-related locations are indexed at 1000+what bit
+                    idx += 1                            #they are stored at in the flags variable
+
             await ctx.send_msgs([{"cmd": "LocationChecks","locations": locs_to_send}])
             #Check which items have been received and change the game state accordingly
             writes = []

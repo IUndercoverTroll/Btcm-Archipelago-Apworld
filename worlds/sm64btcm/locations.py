@@ -117,7 +117,7 @@ SiSt_table = {
 
 OK_table = {
     "OK: THE CLIFFS OF SAXAPHONE SKERRY": 78,
-    "OK: SHELL SHREDIIN' THE SUNKEN ROOVES": 79,
+    "OK: SHELL SHREDDIN' THE SUNKEN ROOVES": 79,
     "OK: SHATTER THE 5 COSMIC ORBS": 80,
     "OK: PINK COINS OF THE ISLES": 81,
     "OK: SECRET PASSAGEWAY TO THE WINDMILL": 82,
@@ -158,33 +158,33 @@ ToT_table = {
 BotH_table = {
     "Bowser on the Highway Red Coins": 106,
     "Bowser on the Highway Defeat UrBowser": 107,
-    "Bowser on the Highway Black Box": 108,
+    "Bowser on the Highway Black Box": 112,
 }
 
 SwtS_table = {
-    "Showdown with the Showrunner Red Coins": 109,
-    "Showdown with the Showrunner Defeat The Showrunner": 110,
+    "Showdown with the Showrunner Red Coins": 113,
+    "Showdown with the Showrunner Defeat The Showrunner": 119,
 }
 
 SSS_table = {
-    "Sloppy Shell Sewers Red Coins": 111,
+    "Sloppy Shell Sewers Red Coins": 127,
     #"Sloppy Shell Sewers Switch": 112,
 }
 
 LS_table = {
-    "Lost City Red Coins": 113,
+    "Lost City Red Coins": 155,
     # "Lost City Switch": 114,
 }
 
 Minigame_table = {
-    "Arena Survival": 117,
-    "Hot Rope Jump": 118,
-    "Hexagon Heat": 119,
-    "Snakio": 120,
-    "Edward Survival": 121,
-    "Bad Apple Dodge": 122,
-    "Flappy Mario": 123,
-    "Sign Game": 124,
+    "Arena Survival": 1008,
+    "Hot Rope Jump": 1007,
+    "Hexagon Heat": 1006,
+    "Snakio": 1005,
+    "Edward Survival": 1004,
+    "Bad Apple Dodge": 1003,
+    "Flappy Mario": 1002,
+    "Sign Game": 1001,
 }
 
 """Badges_table = {
