@@ -11,6 +11,7 @@ courseStarsPtr = saveFileBufferPtr + 0x14
 numStarsPtr = saveFileBufferPtr + 0x4F
 numMetalStarsPtr = saveFileBufferPtr + 0x53
 flagsPtr  = saveFileBufferPtr + 0x10
+storyFlagsPtr = saveFileBufferPtr + 0x11
 
 class BTCMClient(BizHawkClient):
 #Despite the fact this is a "BizHawkClient", this is not meant to use BizHawk
@@ -67,6 +68,7 @@ class BTCMClient(BizHawkClient):
             writes = []
             power_stars = 0
             cosmic_seeds = 0
+            flags = [0,0,0,0,0,0,0,0]
             for item in ctx.items_received:
                 item_name = btcm_items[item.item-1]
                 match item_name:
@@ -74,12 +76,29 @@ class BTCMClient(BizHawkClient):
                         power_stars += 1
                     case "Cosmic Seed":
                         cosmic_seeds += 1
+                    case "Lens":
+                        flags[1] = 1
+                    case "Starfair key":
+                        flags[2] = 1
+                    case "Rocket Boots":
+                        flags[3] = 1
+                    case "Pandora Boxes":
+                        flags[4] = 1
+                    case "Vanetal Cap":
+                        flags[5] = 1
+                    case "Koopa Shell":
+                        flags[6] = 1
             if power_stars > 255:
                 power_stars = 255
             if cosmic_seeds > 255:
                 cosmic_seeds = 255
+            flags_write = 0
+            for index, value in enumerate(flags):
+                flags_write += value * pow(2, index)
+
             writes.append((numStarsPtr, power_stars.to_bytes(), "RDRAM"))
             writes.append((numMetalStarsPtr, cosmic_seeds.to_bytes(), "RDRAM"))
+            writes.append((storyFlagsPtr, flags_write.to_bytes(), "RDRAM"))
             await bizhawk.write(ctx.bizhawk_ctx, writes)
 
         except bizhawk.RequestFailedError:

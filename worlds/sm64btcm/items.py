@@ -13,12 +13,24 @@ ITEM_NAME_TO_ID = {
     "Power Star": 1,
     "Cosmic Seed": 2,
     "Blue Star": 3,
+    "Lens": 4,
+    "Starfair Key": 5,
+    "Rocket Boots": 6,
+    "Pandora Boxes": 7,
+    "Vanetal Cap": 8,
+    "Koopa Shell": 9,
 }
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
     "Power Star": ItemClassification.progression_deprioritized_skip_balancing,
     "Cosmic Seed": ItemClassification.progression_deprioritized_skip_balancing,
     "Blue Star": ItemClassification.filler,
+    "Lens": ItemClassification.progression,
+    "Starfair Key": ItemClassification.progression,
+    "Rocket Boots": ItemClassification.progression,
+    "Pandora Boxes": ItemClassification.progression,
+    "Vanetal Cap": ItemClassification.progression,
+    "Koopa Shell": ItemClassification.progression,
 }
 
 #Some bits of this Stolen directly from the APQuest archipelago
@@ -29,6 +41,12 @@ def create_item_pool(world: BTCMWorld):
         item_pool.append(world.create_item("Power Star"))
     for i in range(40):
         item_pool.append(world.create_item("Cosmic Seed"))
+    item_pool.append(world.create_item("Lens"))
+    item_pool.append(world.create_item("Starfair Key"))
+    item_pool.append(world.create_item("Rocket Boots"))
+    item_pool.append(world.create_item("Pandora Boxes"))
+    item_pool.append(world.create_item("Vanetal Cap"))
+    item_pool.append(world.create_item("Koopa Shell"))
 
 
     number_of_items = len(item_pool)

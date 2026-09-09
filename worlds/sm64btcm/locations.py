@@ -51,7 +51,7 @@ VP_table = {
     "VP: DIGITAL VORTEX OF DEATH": 33,
     "VP: 100 BYTECOINS": 34,
     "VP: THE EXECUTIVE": 35,
-    # "Virtuaplex Switch": 115,
+    "Virtuaplex Switch": 1030,
 }
 
 CC_table = {
@@ -102,7 +102,8 @@ BB_table = {
     "BB: TUBING DOWN THE TUNNEL": 68,
     "BB: HAMMER BRO HUNDREDS": 69,
     "BB: THE 5000 IQ SUPERQUIZ": 70,
-    # "Blueberg Switch": 116,
+    "Blueberg Key": 1026,
+    "Blueberg Switch": 1029,
 }
 
 SiSt_table = {
@@ -158,7 +159,8 @@ ToT_table = {
 BotH_table = {
     "Bowser on the Highway Red Coins": 106,
     "Bowser on the Highway Defeat UrBowser": 107,
-    "Bowser on the Highway Black Box": 112,
+    "Bowser on the Highway Pandora Box": 112,
+    "Bowser on the Highway Lens": 1027,
 }
 
 SwtS_table = {
@@ -168,12 +170,12 @@ SwtS_table = {
 
 SSS_table = {
     "Sloppy Shell Sewers Red Coins": 127,
-    #"Sloppy Shell Sewers Switch": 112,
+    "Sloppy Shell Sewers Switch": 1028,
 }
 
 LS_table = {
     "Lost City Red Coins": 155,
-    # "Lost City Switch": 114,
+    "Lost City Switch": 1031,
 }
 
 Minigame_table = {

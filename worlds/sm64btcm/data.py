@@ -5,4 +5,10 @@ btcm_items: Tuple[str, ...] = (
     "Power Star",
     "Cosmic Seed",
     "Blue Star",
+    "Lens",
+    "Starfair Key",
+    "Rocket Boots",
+    "Pandora Boxes",
+    "Vanetal Cap",
+    "Koopa Shell",
 )
