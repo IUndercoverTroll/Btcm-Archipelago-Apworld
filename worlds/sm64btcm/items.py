@@ -43,13 +43,14 @@ def create_item_pool(world: BTCMWorld):
         item_pool.append(world.create_item("Power Star"))
     for i in range(40):
         item_pool.append(world.create_item("Cosmic Seed"))
+    for i in range(11):
+        item_pool.append(world.create_item("Wallet"))
     item_pool.append(world.create_item("Lens"))
     item_pool.append(world.create_item("Starfair Key"))
     item_pool.append(world.create_item("Rocket Boots"))
     item_pool.append(world.create_item("Pandora Boxes"))
     item_pool.append(world.create_item("Vanetal Cap"))
     item_pool.append(world.create_item("Koopa Shell"))
-    item_pool.append(world.create_item("Wallet"))
 
 
     number_of_items = len(item_pool)
