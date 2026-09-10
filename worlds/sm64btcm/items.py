@@ -19,6 +19,7 @@ ITEM_NAME_TO_ID = {
     "Pandora Boxes": 7,
     "Vanetal Cap": 8,
     "Koopa Shell": 9,
+    "Wallet": 10,
 }
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
@@ -31,6 +32,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Pandora Boxes": ItemClassification.progression,
     "Vanetal Cap": ItemClassification.progression,
     "Koopa Shell": ItemClassification.progression,
+    "Wallet": ItemClassification.progression,
 }
 
 #Some bits of this Stolen directly from the APQuest archipelago
@@ -47,6 +49,7 @@ def create_item_pool(world: BTCMWorld):
     item_pool.append(world.create_item("Pandora Boxes"))
     item_pool.append(world.create_item("Vanetal Cap"))
     item_pool.append(world.create_item("Koopa Shell"))
+    item_pool.append(world.create_item("Wallet"))
 
 
     number_of_items = len(item_pool)

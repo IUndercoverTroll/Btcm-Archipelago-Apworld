@@ -11,6 +11,7 @@ RHR_table = {
     "RHR: TIMED RING CHALLENGE": 5,
     "RHR: THE SEARCH FOR 100 COINS": 6,
     "RHR: KING BULLY BATTLE": 7,
+    "Red Hot Reservoir Wallet": 2016,
 }
 
 LFF_table = {
@@ -21,6 +22,7 @@ LFF_table = {
     "LFF: HORSE RIDIN' RINGS": 12,
     "LFF: FARMER'S LOOSE CHANGE": 13,
     "LFF: REMATCH WITH THE HOG": 14,
+    "Lonely Floating Farm Wallet": 2015,
 }
 
 JS_table = {
@@ -31,6 +33,7 @@ JS_table = {
     "JS: FRANTIC ROCKET RINGS": 19,
     "JS: 100 PREHISTORIC COINS": 20,
     "JS: THE DEATH POKEY": 21,
+    "Jurassic Savanna Wallet": 2014,
 }
 
 TPS_table = {
@@ -41,6 +44,7 @@ TPS_table = {
     "TPS: THE GHOST'S GOBLET": 26,
     "TPS: 100 SEA SICK COINS": 27,
     "TPS: NAVAL WARFARE": 28,
+    "The Phantom Strider Wallet": 2012, #For some reason TPS skips flag 13 which is instead used for the VP wallet
 }
 
 VP_table = {
@@ -52,6 +56,7 @@ VP_table = {
     "VP: 100 BYTECOINS": 34,
     "VP: THE EXECUTIVE": 35,
     "Virtuaplex Switch": 1030,
+    "Virtuaplex Wallet": 2013,
 }
 
 CC_table = {
@@ -62,6 +67,7 @@ CC_table = {
     "CC: BANDIT BEATDOWN": 40,
     "CC: THE COLLECTION OF THE SCRIP": 41,
     "CC: THE GREAT TRAIN ROBBERY": 42,
+    "Cowboy Canyon Wallet": 2011,
 }
 
 IR_table = {
@@ -72,6 +78,7 @@ IR_table = {
     "IR: FIRE!": 47,
     "IR: GIANT'S LOOSE CHANGE": 48,
     "IR: VACUUM CHASE": 49,
+    "Immense Residence Wallet": 2010
 }
 
 RL_table = {
@@ -82,6 +89,7 @@ RL_table = {
     "RL: PHANTO'S CURSED KEY": 54,
     "RL: 1-UP TIME": 55,
     "RL: BIT SIZED BOWSER": 56,
+    "Retroland Wallet": 2009,
 }
 
 TT_table = {
@@ -92,6 +100,7 @@ TT_table = {
     "TT: SNAKE BLOCK MUTINY": 61,
     "TT: TREASURE OF THE THWOMP KING": 62,
     "TT: ATTACK OF THE THWOMP QUEEN": 63,
+    "Thwomp Towers Wallet": 2008,
 }
 
 BB_table = {
@@ -104,6 +113,7 @@ BB_table = {
     "BB: THE 5000 IQ SUPERQUIZ": 70,
     "Blueberg Key": 1026,
     "Blueberg Switch": 1029,
+    "Blueberg Wallet": 2007
 }
 
 SiSt_table = {
@@ -114,6 +124,7 @@ SiSt_table = {
     "SiSt: ROOFTOP RINGS": 75,
     "SiSt: EDWARD CONE COINS": 76,
     "SiSt: CAREFULLY CLIMB THE CONSTRUCTION": 77,
+    "Sinful Starfair Wallet": 2005,
 }
 
 OK_table = {
