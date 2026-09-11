@@ -26,12 +26,21 @@ archWalletsPtr = saveFileBufferPtr + 0x56
 globalCoinsPtr = marioStatePtr + 0x104
 maxGlobalCoinsPtr = marioStatePtr + 0x106
 
+def add_locs_for_one_bits(number: bytes, base_value: int) -> list[int]:
+    idx = 1
+    locs = []
+    for byte in list(number):
+        for bit in format(byte, "08b"):
+            if bit == "1":
+                locs.append(idx + base_value)
+            idx += 1
+    return locs
 
-def hex_to_int(hex_values:bytes):
-    return_value = 0
-    for index, value in enumerate(hex_values[::-1]):
-        return_value += value * pow(256, index)
-    return return_value
+def flags_to_int(flags: list[int]) -> int:
+    x = 0
+    for index, value in enumerate(flags):
+        x += value * pow(2, index)
+    return x
 
 class BTCMClient(BizHawkClient):
 #Despite the fact this is a "BizHawkClient", this is not meant to use BizHawk
@@ -72,8 +81,10 @@ class BTCMClient(BizHawkClient):
                 (unlockedCostumesPtr, 2, "RDRAM") #8
             ]
             read = await bizhawk.read(ctx.bizhawk_ctx, reads)
-            if hex_to_int(read[7]) == 0: #If Mario doesn't exist yet, don't do anything.
+
+            if int.from_bytes(read[7]) == 0: #If Mario doesn't exist yet, don't do anything.
                 return
+
             #Check which locations have been checked and send them
             #First up is all of the course stars
             locs_to_send = []
@@ -86,35 +97,21 @@ class BTCMClient(BizHawkClient):
                         current_star += 1
                     if bit == "1":
                         locs_to_send.append(current_star) #Most star locations are indexed at what bit they are stored at in the course stars variable
+
             #Next Up is the flags (which includes the stars from minigames)
-            idx = 1
-            for byte in list(read[1]):
-                for bit in format(byte,"08b"):
-                    if bit == "1":
-                        locs_to_send.append(idx + 1000) #All Flag-related locations are indexed at 1000+what bit
-                    idx += 1                            #they are stored at in the flags variable
+            locs_to_send.extend(add_locs_for_one_bits(read[1], 1000))
+
             #Third up, Wallets
-            idx = 1
-            for byte in list(read[2]):
-                for bit in format(byte,"08b"):
-                    if bit == "1":
-                        locs_to_send.append(idx + 2000) #Same as above but with 2000
-                    idx += 1
+            locs_to_send.extend(add_locs_for_one_bits(read[2], 2000))
+
             #Fourth up, Badges
-            idx = 1
-            for byte in list(read[6]):
-                for bit in format(byte, "08b"):
-                    if bit == "1":
-                        locs_to_send.append(idx + 3000)  # Same as above but with 3000
-                    idx += 1
+            locs_to_send.extend(add_locs_for_one_bits(read[6], 3000))
+
             #Finally, there's the costumes
-            idx = 1
-            for byte in list(read[8]):
-                for bit in format(byte, "08b"):
-                    if bit == "1":
-                        locs_to_send.append(idx + 4000)  # Same as above but with 4000
-                    idx += 1
+            locs_to_send.extend(add_locs_for_one_bits(read[8], 4000))
+
             await ctx.send_msgs([{"cmd": "LocationChecks","locations": locs_to_send}])
+
             #Check which items have been received and change the game state accordingly
             writes = []
             power_stars = 0
@@ -133,7 +130,7 @@ class BTCMClient(BizHawkClient):
                         cosmic_seeds += 1
                     case "Lens":
                         flags[1] = 1
-                    case "Starfair key":
+                    case "Starfair Key":
                         flags[2] = 1
                     case "Rocket Boots":
                         flags[3] = 1
@@ -150,27 +147,19 @@ class BTCMClient(BizHawkClient):
                 if "Costume" in item_name:
                     costume_flags[item.item-34] = 1
 
-            if power_stars > 255:
-                power_stars = 255
-            if cosmic_seeds > 255:
-                cosmic_seeds = 255
-            if wallets > 16:
-                wallets = 16
+            power_stars = min(power_stars, 255)
+            cosmic_seeds = min(cosmic_seeds, 255)
+            wallets = min(wallets, 16)
 
-            flags_write = 0
-            badge_flags_write = 0
-            costume_flags_write = 0
-            for index, value in enumerate(flags):
-                flags_write += value * pow(2, index)
-            for index, value in enumerate(badge_flags):
-                badge_flags_write += value * pow(2, index)
-            for index, value in enumerate(costume_flags):
-                costume_flags_write += value * pow(2, index)
+            flags_write = flags_to_int(flags)
+            badge_flags_write = flags_to_int(badge_flags)
+            costume_flags_write = flags_to_int(costume_flags)
+
             #For wallets we need to do something special since you're supposed to get +50 coins per wallet.
             #Normally I'd just +50 since your coin cap is going to increase anyways, but doing this could
             #lead to coins you're currently collecting getting deleted due to the delay between reading
             #and writing.
-            prev_num_of_wallets = format(hex_to_int(read[3]),"016b").count("1")
+            prev_num_of_wallets = format(int.from_bytes(read[3]),"016b").count("1")
             if wallets > prev_num_of_wallets:
                 #First we write to RDRAM a bit for every wallet we have (this is normal)
                 wallet_write = 0
@@ -182,8 +171,8 @@ class BTCMClient(BizHawkClient):
 
             if self.unsentCoins > 0:
                 #We might not have actually sent the wallet yet. So we're calculating what the max should be
-                max_coins = hex_to_int(read[5]) + (50 * wallets - prev_num_of_wallets)
-                coins_to_send = hex_to_int(read[4]) + self.unsentCoins
+                max_coins = int.from_bytes(read[5]) + (50 * wallets - prev_num_of_wallets)
+                coins_to_send = int.from_bytes(read[4]) + self.unsentCoins
                 #Only needed because sometimes I like to set my coins to the limit manually
                 if coins_to_send > 1000:
                     coins_to_send = min(coins_to_send, 65535)
