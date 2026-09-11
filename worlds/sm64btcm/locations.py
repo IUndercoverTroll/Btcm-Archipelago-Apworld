@@ -14,6 +14,7 @@ RHR_table = {
     "Red Hot Reservoir Wallet": 2016,
     "Lava Boost Badge (Shop)": 3024,
     "Burn Badge (Shop)": 3012,
+    "RHR: Costume on top of the Rock": 4015,
 }
 
 LFF_table = {
@@ -25,6 +26,8 @@ LFF_table = {
     "LFF: FARMER'S LOOSE CHANGE": 13,
     "LFF: REMATCH WITH THE HOG": 14,
     "Lonely Floating Farm Wallet": 2015,
+    "LFF: Costume under the starting area": 4008,
+    "LFF: Costume in the silo slide": 4012,
 }
 
 JS_table = {
@@ -50,6 +53,7 @@ TPS_table = {
     "Gills Badge (Shop)": 3020,
     "Fins Badge (Shop)": 3019,
     "Star Radar Badge (Shop)": 3013,
+    "TPS: Costume in the hull of the ship": 4010,
 }
 
 VP_table = {
@@ -62,6 +66,7 @@ VP_table = {
     "VP: THE EXECUTIVE": 35,
     "Virtuaplex Switch": 1030,
     "Virtuaplex Wallet": 2013,
+    "VP: Costume in the cage": 4009,
 }
 
 CC_table = {
@@ -83,7 +88,8 @@ IR_table = {
     "IR: FIRE!": 47,
     "IR: GIANT'S LOOSE CHANGE": 48,
     "IR: VACUUM CHASE": 49,
-    "Immense Residence Wallet": 2010
+    "Immense Residence Wallet": 2010,
+    "IR: Costume in the kitchen sink": 4007,
 }
 
 RL_table = {
@@ -95,6 +101,7 @@ RL_table = {
     "RL: 1-UP TIME": 55,
     "RL: BIT SIZED BOWSER": 56,
     "Retroland Wallet": 2009,
+    "RL: Costume inside the box": 4006,
 }
 
 TT_table = {
@@ -109,6 +116,7 @@ TT_table = {
     "Fast Foot Badge (Shop)": 3007,
     "Sticky Badge (Shop)": 3008,
     "Feather Badge (Shop)": 3010,
+    "TT: Costume ontop of the Arches": 4005,
 }
 
 BB_table = {
@@ -125,6 +133,8 @@ BB_table = {
     "HP Regen Badge (Shop)": 3018,
     "Greed Badge (Shop)": 3016,
     "Double Time Badge (Shop)": 3015,
+    "BB: Costume on top of the metal thing" : 4014,
+    "BB: Costume in the quiz area": 4011,
 }
 
 SiSt_table = {
@@ -139,6 +149,8 @@ SiSt_table = {
     "Heal Plus Badge (Shop)": 3006,
     "Bottomless Badge (Shop)": 3005,
     "Boss Slayer Badge (Shop)": 3004,
+    "SiSt: Costume at the end of the star factory": 4004,
+    "SiSt: Costume on the Axle of the Ferris Wheel": 4003,
 }
 
 OK_table = {
@@ -191,6 +203,7 @@ BotH_table = {
 SwtS_table = {
     "Showdown with the Showrunner Red Coins": 113,
     "Showdown with the Showrunner Defeat The Showrunner": 119,
+    "SwTS: Costume on the Popcorn Bucket": 4002,
 }
 
 SSS_table = {
@@ -221,6 +234,7 @@ Starting_room_badge_table = {
     "Brittle Burden (Shop)": 3003,
     "Withering Burden (Shop)": 3002,
     "Save Shatter Burden (Shop)": 3001,
+    "Floor 1 Costume in the changing Room": 4013, #Not a badge but whatever.
 }
 
 Three_seed_room_badge_table = {

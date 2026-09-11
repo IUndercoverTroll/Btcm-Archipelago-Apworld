@@ -44,6 +44,20 @@ ITEM_NAME_TO_ID = {
     "Brittle Burden": 32,
     "Withering Burden": 33,
     "Save Shatter Burden": 34,
+    "Fire Flower Costume": 35,
+    "Glitchy Costume": 36,
+    "Luigi Costume": 37,
+    "Wario Costume": 38,
+    "Disco Costume": 39,
+    "Undead Pirate Costume": 40,
+    "Mocap Costume": 41,
+    "Darius Costume": 42,
+    "Butler Costume": 43,
+    "Retro Costume": 44,
+    "Thwomp Costume": 45,
+    "Builder Costume": 46,
+    "Showrunner Costume": 47,
+    "Cosmic Phantasm Costume": 48,
 }
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
@@ -81,6 +95,20 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Defense Badge": ItemClassification.useful,
     "Fall Damage Badge": ItemClassification.useful,
     "Lava Boost Badge": ItemClassification.useful | ItemClassification.progression,
+    "Fire Flower Costume": ItemClassification.filler,
+    "Glitchy Costume": ItemClassification.filler,
+    "Luigi Costume": ItemClassification.filler,
+    "Wario Costume": ItemClassification.filler,
+    "Disco Costume": ItemClassification.filler,
+    "Undead Pirate Costume": ItemClassification.filler,
+    "Mocap Costume": ItemClassification.filler,
+    "Darius Costume": ItemClassification.filler,
+    "Butler Costume": ItemClassification.filler,
+    "Retro Costume": ItemClassification.filler,
+    "Thwomp Costume": ItemClassification.filler,
+    "Builder Costume": ItemClassification.filler,
+    "Showrunner Costume": ItemClassification.filler,
+    "Cosmic Phantasm Costume": ItemClassification.filler,
 }
 
 #Some bits of this Stolen directly from the APQuest archipelago
@@ -124,6 +152,20 @@ def create_item_pool(world: BTCMWorld):
     item_pool.append(world.create_item("Defense Badge"))
     item_pool.append(world.create_item("Fall Damage Badge"))
     item_pool.append(world.create_item("Lava Boost Badge"))
+    item_pool.append(world.create_item("Fire Flower Costume"))
+    item_pool.append(world.create_item("Glitchy Costume"))
+    item_pool.append(world.create_item("Luigi Costume"))
+    item_pool.append(world.create_item("Wario Costume"))
+    item_pool.append(world.create_item("Disco Costume"))
+    item_pool.append(world.create_item("Undead Pirate Costume"))
+    item_pool.append(world.create_item("Mocap Costume"))
+    item_pool.append(world.create_item("Darius Costume"))
+    item_pool.append(world.create_item("Butler Costume"))
+    item_pool.append(world.create_item("Retro Costume"))
+    item_pool.append(world.create_item("Thwomp Costume"))
+    item_pool.append(world.create_item("Builder Costume"))
+    item_pool.append(world.create_item("Showrunner Costume"))
+    item_pool.append(world.create_item("Cosmic Phantasm Costume"))
 
 
 

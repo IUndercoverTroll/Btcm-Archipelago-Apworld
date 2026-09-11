@@ -36,6 +36,20 @@ btcm_items: Tuple[str, ...] = (
     "Brittle Burden",
     "Withering Burden",
     "Save Shatter Burden",
+    "Fireflower Costume",
+    "Glitchy Costume",
+    "Luigi Costume",
+    "Wario Costume",
+    "Disco Costume",
+    "Undead Pirate Costume",
+    "Mocap Costume",
+    "Darius Costume",
+    "Butler Costume",
+    "Retro Costume",
+    "Thwomp Costume",
+    "Builder Costume",
+    "Showrunner Costume",
+    "Cosmic Phantasm Costume",
 )
 
 #Here in case I wanna add the "What item you're going to get if you buy this" indicator some AP's have.
