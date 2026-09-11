@@ -6,6 +6,8 @@ from .data import btcm_items
 if TYPE_CHECKING:
     from worlds._bizhawk.context import BizHawkClientContext
 
+marioObjectPtr = 0x238AEC
+
 saveFileBufferPtr = 0x89CB0
 marioStatePtr = 0x237CF0
 courseStarsPtr = saveFileBufferPtr + 0x14
@@ -16,6 +18,7 @@ storyFlagsPtr = saveFileBufferPtr + 0x11
 walletsPtr = saveFileBufferPtr + 0x2
 unlockedBadgesPtr = saveFileBufferPtr + 0x40
 archUnlockedBadgesPtr = saveFileBufferPtr + 0x59
+
 
 archWalletsPtr = saveFileBufferPtr + 0x56
 globalCoinsPtr = marioStatePtr + 0x104
@@ -63,8 +66,11 @@ class BTCMClient(BizHawkClient):
                 (globalCoinsPtr, 2, "RDRAM"), #4
                 (maxGlobalCoinsPtr, 2, "RDRAM"), #5
                 (unlockedBadgesPtr, 3, "RDRAM"), #6
+                (marioObjectPtr, 4, "RDRAM"), #7
             ]
             read = await bizhawk.read(ctx.bizhawk_ctx, reads)
+            if hex_to_int(read[7]) == 0: #If Mario doesn't exist yet, don't do anything.
+                return
             #Check which locations have been checked and send them
             #First up is all of the course stars
             locs_to_send = []
