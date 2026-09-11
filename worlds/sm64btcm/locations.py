@@ -12,6 +12,8 @@ RHR_table = {
     "RHR: THE SEARCH FOR 100 COINS": 6,
     "RHR: KING BULLY BATTLE": 7,
     "Red Hot Reservoir Wallet": 2016,
+    "Lava Boost Badge (Shop)": 3024,
+    "Burn Badge (Shop)": 3012,
 }
 
 LFF_table = {
@@ -45,6 +47,9 @@ TPS_table = {
     "TPS: 100 SEA SICK COINS": 27,
     "TPS: NAVAL WARFARE": 28,
     "The Phantom Strider Wallet": 2012, #For some reason TPS skips flag 13 which is instead used for the VP wallet
+    "Gills Badge (Shop)": 3020,
+    "Fins Badge (Shop)": 3019,
+    "Star Radar Badge (Shop)": 3013,
 }
 
 VP_table = {
@@ -101,6 +106,9 @@ TT_table = {
     "TT: TREASURE OF THE THWOMP KING": 62,
     "TT: ATTACK OF THE THWOMP QUEEN": 63,
     "Thwomp Towers Wallet": 2008,
+    "Fast Foot Badge (Shop)": 3007,
+    "Sticky Badge (Shop)": 3008,
+    "Feather Badge (Shop)": 3010,
 }
 
 BB_table = {
@@ -113,7 +121,10 @@ BB_table = {
     "BB: THE 5000 IQ SUPERQUIZ": 70,
     "Blueberg Key": 1026,
     "Blueberg Switch": 1029,
-    "Blueberg Wallet": 2007
+    "Blueberg Wallet": 2007,
+    "HP Regen Badge (Shop)": 3018,
+    "Greed Badge (Shop)": 3016,
+    "Double Time Badge (Shop)": 3015,
 }
 
 SiSt_table = {
@@ -125,6 +136,9 @@ SiSt_table = {
     "SiSt: EDWARD CONE COINS": 76,
     "SiSt: CAREFULLY CLIMB THE CONSTRUCTION": 77,
     "Sinful Starfair Wallet": 2005,
+    "Heal Plus Badge (Shop)": 3006,
+    "Bottomless Badge (Shop)": 3005,
+    "Boss Slayer Badge (Shop)": 3004,
 }
 
 OK_table = {
@@ -200,34 +214,27 @@ Minigame_table = {
     "Sign Game": 1001,
 }
 
-"""Badges_table = {
-    "Lava Boost Badge": 125,
-    "Fall Damage Badge": 126,
-    "Defense Badge": 127,
-    "Double Damage Badge": 128,
-    "Gills Badge": 129,
-    "Fins Badge": 130,
-    "HP Regen Badge": 131,
-    "Mana Regen Badge": 132,
-    "Greed Badge": 133,
-    "Double Time Badge": 134,
-    "Magnet Badge": 135,
-    "Star Radar Badge": 136,
-    "Burn Badge": 137,
-    "Squish Badge": 138,
-    "Feather Badge": 139,
-    "Weight Badge": 140,
-    "Sticky Badge": 141,
-    "Fast Foot Badge": 142,
-    "Heal Plus Badge": 143,
-    "Bottomless Badge": 144,
-    "Boss Slayer Badge": 145,
-    "Brittle Burden": 146,
-    "Withering Burden": 147,
-    "Save Shatter Burden": 148,
-}"""
+Starting_room_badge_table = {
+    "Fall Damage Badge (Shop)": 3023,
+    "Defense Badge (Shop)": 3022,
+    "Magnet Badge (Shop)": 3014,
+    "Brittle Burden (Shop)": 3003,
+    "Withering Burden (Shop)": 3002,
+    "Save Shatter Burden (Shop)": 3001,
+}
+
+Three_seed_room_badge_table = {
+    "Squish Badge (Shop)": 3011,
+    "Weight Badge (Shop)": 3009,
+}
+
+Observatory_badge_table = {
+    "Double Damage Badge (Shop)": 3021,
+    "Mana Regen Badge (Shop)": 3017,
+}
 
 location_table = {**RHR_table,**LFF_table,**JS_table,**TPS_table,**VP_table,
                   **CC_table,**IR_table,**RL_table,**TT_table,**BB_table,
                   **SiSt_table,**OK_table,**HuHa_table,**TFE_table,**ToT_table,
-                  **BotH_table,**SwtS_table,**SSS_table,**LS_table,**Minigame_table}
+                  **BotH_table,**SwtS_table,**SSS_table,**LS_table,**Minigame_table,
+                  **Starting_room_badge_table,**Three_seed_room_badge_table,**Observatory_badge_table}

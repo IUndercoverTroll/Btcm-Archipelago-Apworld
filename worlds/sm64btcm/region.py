@@ -5,10 +5,12 @@ from BaseClasses import Region
 if TYPE_CHECKING:
     from .world import BTCMWorld
 
-from .locations import RHR_table,LFF_table,JS_table,TPS_table,VP_table, \
-    CC_table,IR_table,RL_table,TT_table,BB_table, \
-    SiSt_table,OK_table,HuHa_table,TFE_table,ToT_table, \
-    BotH_table,SwtS_table,SSS_table,LS_table,Minigame_table, BTCMLocation
+from .locations import RHR_table, LFF_table, JS_table, TPS_table, VP_table, \
+    CC_table, IR_table, RL_table, TT_table, BB_table, \
+    SiSt_table, OK_table, HuHa_table, TFE_table, ToT_table, \
+    BotH_table, SwtS_table, SSS_table, LS_table, Minigame_table, BTCMLocation, Three_seed_room_badge_table, \
+    Starting_room_badge_table, Observatory_badge_table
+
 
 def create_all_regions(world: BTCMWorld):
     starting_room = Region("Starting Room", world.player, world.multiworld)
@@ -33,6 +35,7 @@ def create_all_regions(world: BTCMWorld):
     trials_of_terminus = Region("Trials of Terminus", world.player, world.multiworld)
 
     prehistoric_research_room = Region("Prehistoric Research Room", world.player, world.multiworld)
+    three_seed_room = Region("Three Seed Room", world.player, world.multiworld)
     bowser_on_the_highway = Region("Bowser on the Highway", world.player, world.multiworld)
     showdown_with_the_showrunner = Region("Showdown with The Showrunner", world.player, world.multiworld)
     sloppy_shell_sewers = Region("Sloppy Shell Sewers", world.player, world.multiworld)
@@ -42,14 +45,14 @@ def create_all_regions(world: BTCMWorld):
                agamemnon,red_hot_reservoir,lonely_floating_farm, jurassic_savanna,
                the_phantom_strider,virtuaplex,cowboy_canyon,immense_residence,
                retroland, thwomp_towers, blueberg, orchestral_keys, hushed_haven,
-               the_final_empire,trials_of_terminus,prehistoric_research_room,bowser_on_the_highway,
-               showdown_with_the_showrunner, sloppy_shell_sewers, lost_city]
+               the_final_empire,trials_of_terminus,prehistoric_research_room,three_seed_room,
+               bowser_on_the_highway, showdown_with_the_showrunner, sloppy_shell_sewers, lost_city]
 
     world.multiworld.regions += regions
 
     world.region_dict = {
         starting_room: [red_hot_reservoir, lonely_floating_farm,the_phantom_strider, virtuaplex,
-                        sinful_starfair,observatory,prehistoric_research_room,bowser_on_the_highway],
+                        sinful_starfair,observatory,prehistoric_research_room,bowser_on_the_highway,three_seed_room],
         prehistoric_research_room: [sloppy_shell_sewers, jurassic_savanna],
         observatory: [cowboy_canyon, immense_residence, thwomp_towers],
         immense_residence: [retroland],
@@ -85,3 +88,7 @@ def connect_regions(world: BTCMWorld, region_dict: dict):
     world.get_region("Showdown with The Showrunner").add_locations(SwtS_table, BTCMLocation)
     world.get_region("Sloppy Shell Sewers").add_locations(SSS_table, BTCMLocation)
     world.get_region("Lost City").add_locations(LS_table, BTCMLocation)
+
+    world.get_region("Starting Room").add_locations(Starting_room_badge_table, BTCMLocation)
+    world.get_region("Three Seed Room").add_locations(Three_seed_room_badge_table, BTCMLocation)
+    world.get_region("Observatory").add_locations(Observatory_badge_table, BTCMLocation)

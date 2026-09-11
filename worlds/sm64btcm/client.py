@@ -14,6 +14,9 @@ numMetalStarsPtr = saveFileBufferPtr + 0x53
 flagsPtr  = saveFileBufferPtr + 0x10
 storyFlagsPtr = saveFileBufferPtr + 0x11
 walletsPtr = saveFileBufferPtr + 0x2
+unlockedBadgesPtr = saveFileBufferPtr + 0x40
+archUnlockedBadgesPtr = saveFileBufferPtr + 0x59
+
 archWalletsPtr = saveFileBufferPtr + 0x56
 globalCoinsPtr = marioStatePtr + 0x104
 maxGlobalCoinsPtr = marioStatePtr + 0x106
@@ -59,6 +62,7 @@ class BTCMClient(BizHawkClient):
                 (archWalletsPtr, 2, "RDRAM"), #3
                 (globalCoinsPtr, 2, "RDRAM"), #4
                 (maxGlobalCoinsPtr, 2, "RDRAM"), #5
+                (unlockedBadgesPtr, 3, "RDRAM"), #6
             ]
             read = await bizhawk.read(ctx.bizhawk_ctx, reads)
             #Check which locations have been checked and send them
@@ -87,13 +91,21 @@ class BTCMClient(BizHawkClient):
                     if bit == "1":
                         locs_to_send.append(idx + 2000) #Same as above but with 2000
                     idx += 1
+            #Fourth up, Badges
+            idx = 1
+            for byte in list(read[6]):
+                for bit in format(byte, "08b"):
+                    if bit == "1":
+                        locs_to_send.append(idx + 3000)  # Same as above but with 3000
+                    idx += 1
             await ctx.send_msgs([{"cmd": "LocationChecks","locations": locs_to_send}])
             #Check which items have been received and change the game state accordingly
             writes = []
             power_stars = 0
             cosmic_seeds = 0
             wallets = 1 #You start off with 1 wallet
-            flags = [0,0,0,0,0,0,0,0]
+            flags = [0] * 8
+            badge_flags = [0] * 24
             for item in ctx.items_received:
                 item_name = btcm_items[item.item-1]
                 match item_name:
@@ -115,6 +127,8 @@ class BTCMClient(BizHawkClient):
                         flags[6] = 1
                     case "Wallet":
                         wallets += 1
+                if ("Badge" in item_name) | ("Burden" in item_name):
+                    badge_flags[item.item-11] = 1
             if power_stars > 255:
                 power_stars = 255
             if cosmic_seeds > 255:
@@ -124,6 +138,9 @@ class BTCMClient(BizHawkClient):
             flags_write = 0
             for index, value in enumerate(flags):
                 flags_write += value * pow(2, index)
+            badge_flags_write = 0
+            for index, value in enumerate(badge_flags):
+                badge_flags_write += value * pow(2, index)
             #For wallets we need to do something special since you're supposed to get +50 coins per wallet.
             #Normally I'd just +50 since your coin cap is going to increase anyways, but doing this could
             #lead to coins you're currently collecting getting deleted due to the delay between reading
@@ -160,6 +177,7 @@ class BTCMClient(BizHawkClient):
             writes.append((numStarsPtr, power_stars.to_bytes(), "RDRAM"))
             writes.append((numMetalStarsPtr, cosmic_seeds.to_bytes(), "RDRAM"))
             writes.append((storyFlagsPtr, flags_write.to_bytes(), "RDRAM"))
+            writes.append((archUnlockedBadgesPtr,badge_flags_write.to_bytes(3), "RDRAM"))
             await bizhawk.write(ctx.bizhawk_ctx, writes)
 
         except bizhawk.RequestFailedError:
