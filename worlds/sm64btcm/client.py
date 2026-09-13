@@ -7,9 +7,10 @@ if TYPE_CHECKING:
     from worlds._bizhawk.context import BizHawkClientContext
 
 marioObjectPtr = 0x238AEC
+currSaveFilePtr = 0x2275BB
+saveBufferSize = 0xD0
 
 saveFileBufferPtr = 0x89CB0
-marioStatePtr = 0x237CF0
 courseStarsPtr = saveFileBufferPtr + 0x14
 numStarsPtr = saveFileBufferPtr + 0x4F
 numMetalStarsPtr = saveFileBufferPtr + 0x53
@@ -20,9 +21,9 @@ unlockedBadgesPtr = saveFileBufferPtr + 0x40
 archUnlockedBadgesPtr = saveFileBufferPtr + 0x59
 unlockedCostumesPtr = saveFileBufferPtr + 0x0
 archUnlockedCostumesPtr = saveFileBufferPtr + 0x54
-
-
 archWalletsPtr = saveFileBufferPtr + 0x56
+
+marioStatePtr = 0x237CF0
 globalCoinsPtr = marioStatePtr + 0x104
 maxGlobalCoinsPtr = marioStatePtr + 0x106
 
@@ -41,6 +42,11 @@ def flags_to_int(flags: list[int]) -> int:
     for index, value in enumerate(flags):
         x += value * pow(2, index)
     return x
+
+def get_offset(save_buffer_size: bytes, current_save: bytes) -> int:
+    x = int.from_bytes(save_buffer_size)
+    y = int.from_bytes(current_save)
+    return  x * (y - 1)
 
 class BTCMClient(BizHawkClient):
 #Despite the fact this is a "BizHawkClient", this is not meant to use BizHawk
@@ -68,17 +74,20 @@ class BTCMClient(BizHawkClient):
 
     async def game_watcher(self, ctx: "BizHawkClientContext") -> None:
         try:
+            from CommonClient import logger
 
+            save_file_num = await bizhawk.read(ctx.bizhawk_ctx, [(currSaveFilePtr, 1, "RDRAM")])
+            offset = get_offset(saveBufferSize.to_bytes(), save_file_num[0])
             reads = [
-                (courseStarsPtr, 25, "RDRAM"), #0
-                (flagsPtr, 4, "RDRAM"), #1
-                (walletsPtr, 2, "RDRAM"), #2
-                (archWalletsPtr, 2, "RDRAM"), #3
+                (courseStarsPtr + offset, 25, "RDRAM"), #0
+                (flagsPtr + offset, 4, "RDRAM"), #1
+                (walletsPtr + offset, 2, "RDRAM"), #2
+                (archWalletsPtr + offset, 2, "RDRAM"), #3
                 (globalCoinsPtr, 2, "RDRAM"), #4
                 (maxGlobalCoinsPtr, 2, "RDRAM"), #5
-                (unlockedBadgesPtr, 3, "RDRAM"), #6
+                (unlockedBadgesPtr + offset, 3, "RDRAM"), #6
                 (marioObjectPtr, 4, "RDRAM"), #7
-                (unlockedCostumesPtr, 2, "RDRAM") #8
+                (unlockedCostumesPtr + offset, 2, "RDRAM"), #8
             ]
             read = await bizhawk.read(ctx.bizhawk_ctx, reads)
 
@@ -155,44 +164,28 @@ class BTCMClient(BizHawkClient):
             badge_flags_write = flags_to_int(badge_flags)
             costume_flags_write = flags_to_int(costume_flags)
 
-            #For wallets we need to do something special since you're supposed to get +50 coins per wallet.
-            #Normally I'd just +50 since your coin cap is going to increase anyways, but doing this could
-            #lead to coins you're currently collecting getting deleted due to the delay between reading
-            #and writing.
             prev_num_of_wallets = format(int.from_bytes(read[3]),"016b").count("1")
+            wallet_write = 0
+            for i in range(wallets):
+                wallet_write += pow(2, i)
             if wallets > prev_num_of_wallets:
-                #First we write to RDRAM a bit for every wallet we have (this is normal)
-                wallet_write = 0
-                for i in range(wallets):
-                    wallet_write += pow(2,i)
-                writes.append((archWalletsPtr, wallet_write.to_bytes(2), "RDRAM"))
                 #Then we try to send coins to the player
                 self.unsentCoins += 50 * (wallets - prev_num_of_wallets)
 
             if self.unsentCoins > 0:
-                #We might not have actually sent the wallet yet. So we're calculating what the max should be
-                max_coins = int.from_bytes(read[5]) + (50 * wallets - prev_num_of_wallets)
                 coins_to_send = int.from_bytes(read[4]) + self.unsentCoins
                 #Only needed because sometimes I like to set my coins to the limit manually
                 if coins_to_send > 1000:
                     coins_to_send = min(coins_to_send, 65535)
-                    max_coins = 65535
-                write_result = await bizhawk.guarded_write(
-                    ctx.bizhawk_ctx,
-                    [(globalCoinsPtr, min(coins_to_send,max_coins).to_bytes(2), "RDRAM")],
-                    [(globalCoinsPtr, read[4], "RDRAM")]
-                )
-                if write_result:
-                    #Note that we might not have sent all of the coins to the player. But that's okay.
-                    self.unsentCoins = 0
+                writes.append((globalCoinsPtr, coins_to_send.to_bytes(2), "RDRAM"))
+                self.unsentCoins = 0
 
-
-
-            writes.append((numStarsPtr, power_stars.to_bytes(), "RDRAM"))
-            writes.append((numMetalStarsPtr, cosmic_seeds.to_bytes(), "RDRAM"))
-            writes.append((storyFlagsPtr, flags_write.to_bytes(), "RDRAM"))
-            writes.append((archUnlockedBadgesPtr,badge_flags_write.to_bytes(3), "RDRAM"))
-            writes.append((archUnlockedCostumesPtr, costume_flags_write.to_bytes(2), "RDRAM"))
+            writes.append((archWalletsPtr + offset, wallet_write.to_bytes(2), "RDRAM"))
+            writes.append((numStarsPtr + offset, power_stars.to_bytes(), "RDRAM"))
+            writes.append((numMetalStarsPtr + offset, cosmic_seeds.to_bytes(), "RDRAM"))
+            writes.append((storyFlagsPtr + offset, flags_write.to_bytes(), "RDRAM"))
+            writes.append((archUnlockedBadgesPtr + offset,badge_flags_write.to_bytes(3), "RDRAM"))
+            writes.append((archUnlockedCostumesPtr + offset, costume_flags_write.to_bytes(2), "RDRAM"))
             await bizhawk.write(ctx.bizhawk_ctx, writes)
 
         except bizhawk.RequestFailedError:
