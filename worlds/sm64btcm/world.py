@@ -16,7 +16,7 @@ class BTCMWorld(World):
 
     def set_rules(self) -> None:
         rules.set_entrance_rules(self)
-#        rules.set_location_rules(self)
+        rules.set_location_rules(self)
 
     def create_items(self) -> None:
         items.create_item_pool(self)
