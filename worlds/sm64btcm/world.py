@@ -1,5 +1,5 @@
 from ..AutoWorld import World
-from . import items, locations, region
+from . import items, locations, region, rules
 
 class BTCMWorld(World):
     """Super Mario 64: Beyond the Cursed Mirror is a romhack of SM64 with a new story as well as the ability to level up, badges, and costumes."""
@@ -12,10 +12,11 @@ class BTCMWorld(World):
 
     def create_regions(self) -> None:
         region.create_all_regions(self)
-        region.connect_regions(self, self.region_dict)
+        region.connect_regions(self, self.region_dict,self.entrance_list)
 
     def set_rules(self) -> None:
-        pass
+        rules.set_entrance_rules(self)
+#        rules.set_location_rules(self)
 
     def create_items(self) -> None:
         items.create_item_pool(self)

@@ -113,10 +113,13 @@ TT_table = {
     "TT: TREASURE OF THE THWOMP KING": 62,
     "TT: ATTACK OF THE THWOMP QUEEN": 63,
     "Thwomp Towers Wallet": 2008,
+    "TT: Costume ontop of the Arches": 4005,
+}
+
+TT_badge_table = {
     "Fast Foot Badge (Shop)": 3007,
     "Sticky Badge (Shop)": 3008,
     "Feather Badge (Shop)": 3010,
-    "TT: Costume ontop of the Arches": 4005,
 }
 
 BB_table = {
@@ -150,7 +153,7 @@ SiSt_table = {
     "Bottomless Badge (Shop)": 3005,
     "Boss Slayer Badge (Shop)": 3004,
     "SiSt: Costume at the end of the star factory": 4004,
-    "SiSt: Costume on the Axle of the Ferris Wheel": 4003,
+    "SiSt: Costume on the axle of the Ferris Wheel": 4003,
 }
 
 OK_table = {
