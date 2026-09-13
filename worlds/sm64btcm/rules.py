@@ -13,7 +13,7 @@ def set_entrance_rules(world: 'BTCMWorld'):
     world.set_rule(world.get_entrance("Three Seed Door"), Has("Cosmic Seed", count=3))
     world.set_rule(world.get_entrance("Telescope"), Has("Lens") & Has("Power Star"))
     world.set_rule(world.get_entrance("NES"), CanReachLocation("IR: QUEST FOR CHEESE"))
-    world.set_rule(world.get_entrance("Sinful Starfair Door"), Has("Sinful Starfair Key"))
+    world.set_rule(world.get_entrance("Sinful Starfair Door"), Has("Starfair Key"))
     world.set_rule(world.get_entrance("Thirty Star Cage"), Has("Power Star", count=30))
     world.set_rule(world.get_entrance("Thwomp Guard"), CanReachLocation("TT: DUEL THE THWOMP KING"))
     world.set_rule(world.get_entrance("Thwomp Towers Wall Jump"), Has("Sticky Badge")) #Pretty much every star requires that one wall jump which imo isn't that hard, but I can imagine people struggling without it.
@@ -79,6 +79,7 @@ def set_location_rules(world: 'BTCMWorld'):
     world.set_rule(world.get_location("ToT: RED TRIAL"), koopa_shell)
     world.set_rule(world.get_location("ToT: GREEN TRIAL"), vanetal_cap)
     world.set_rule(world.get_location("ToT: HEART OF AGAMEMNON"), rocket_boots)
+    world.set_completion_rule(CanReachLocation("ToT: HEART OF AGAMEMNON"))
 
 
 

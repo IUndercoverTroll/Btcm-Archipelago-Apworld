@@ -88,7 +88,7 @@ def connect_regions(world: BTCMWorld, region_dict: dict[Region, list[Region]], e
             i.connect(j)
 
     for j, k, l in entrance_list:
-        k.connect(k,l)
+        j.connect(k,l)
 
     world.get_region("Red Hot Reservoir").add_locations(RHR_table, BTCMLocation)
     world.get_region("Lonely Floating Farm").add_locations(LFF_table, BTCMLocation)
