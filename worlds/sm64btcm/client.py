@@ -2,6 +2,7 @@ from typing_extensions import TYPE_CHECKING
 from worlds._bizhawk.client import BizHawkClient
 import worlds._bizhawk as bizhawk
 from .data import btcm_items
+from NetUtils import ClientStatus
 
 if TYPE_CHECKING:
     from worlds._bizhawk.context import BizHawkClientContext
@@ -106,6 +107,11 @@ class BTCMClient(BizHawkClient):
                         current_star += 1
                     if bit == "1":
                         locs_to_send.append(current_star) #Most star locations are indexed at what bit they are stored at in the course stars variable
+                        if current_star == 105:
+                            await ctx.send_msgs([{
+                                "cmd": "StatusUpdate",
+                                "status": ClientStatus.CLIENT_GOAL
+                            }])
 
             #Next Up is the flags (which includes the stars from minigames)
             locs_to_send.extend(add_locs_for_one_bits(read[1], 1000))
