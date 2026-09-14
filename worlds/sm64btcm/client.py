@@ -59,9 +59,13 @@ class BTCMClient(BizHawkClient):
 
     async def validate_rom(self, ctx: "BizHawkClientContext") -> bool:
         try:
+            from CommonClient import logger
             # Check ROM name/patch version
             rom_name = ((await bizhawk.read(ctx.bizhawk_ctx, [(0x20, 20, "ROM")]))[0]).decode("ascii")
-            if rom_name != "SM64 BTCM ARCH      ":
+            if rom_name != "SM64 BTCM ARCH      " and "SM64 BTCM ARCH" in rom_name:
+                logger.error("The APworld you are using is outdated. Please update your APworld then try again.")
+                return False
+            elif rom_name != "SM64 BTCM ARCH      ":
                 return False
         except bizhawk.RequestFailedError:
             return False
