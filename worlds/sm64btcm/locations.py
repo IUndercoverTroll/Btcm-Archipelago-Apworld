@@ -194,6 +194,12 @@ ToT_table = {
     "ToT: BLUE TRIAL": 103,
     "ToT: PINK TRIAL": 104,
     "ToT: HEART OF AGAMEMNON": 105,
+    "RED TRIAL": None, #Making event locations that just mimic the trials from TOT
+    "YELLOW TRIAL": None,
+    "GREEN TRIAL": None,
+    "CYAN TRIAL": None,
+    "BLUE TRIAL": None,
+    "PINK TRIAL": None,
 }
 
 BotH_table = {

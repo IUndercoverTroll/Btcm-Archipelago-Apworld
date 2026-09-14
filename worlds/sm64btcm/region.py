@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Sequence
-from BaseClasses import Region
+from BaseClasses import Region, ItemClassification, Location
+from . import items
 
 if TYPE_CHECKING:
     from .world import BTCMWorld
@@ -120,3 +121,14 @@ def connect_regions(world: BTCMWorld, region_dict: dict[Region, list[Region]], e
     world.get_region("Starting Room").add_locations(Starting_room_badge_table, BTCMLocation)
     world.get_region("Three Seed Room").add_locations(Three_seed_room_badge_table, BTCMLocation)
     world.get_region("Observatory").add_locations(Observatory_badge_table, BTCMLocation)
+
+def create_event_items(world: BTCMWorld) -> None:
+    trial_completion = items.BTCMItem("Trial Completion", ItemClassification.progression, None, world.player)
+
+    world.get_location("RED TRIAL").place_locked_item(trial_completion)
+    world.get_location("YELLOW TRIAL").place_locked_item(trial_completion)
+    world.get_location("GREEN TRIAL").place_locked_item(trial_completion)
+    world.get_location("CYAN TRIAL").place_locked_item(trial_completion)
+    world.get_location("BLUE TRIAL").place_locked_item(trial_completion)
+    world.get_location("PINK TRIAL").place_locked_item(trial_completion)
+

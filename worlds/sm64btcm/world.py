@@ -13,6 +13,7 @@ class BTCMWorld(World):
     def create_regions(self) -> None:
         region.create_all_regions(self)
         region.connect_regions(self, self.region_dict,self.entrance_list)
+        region.create_event_items(self)
 
     def set_rules(self) -> None:
         rules.set_entrance_rules(self)

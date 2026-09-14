@@ -37,6 +37,7 @@ def set_location_rules(world: 'BTCMWorld'):
     fast_foot_badge = Has("Fast Foot Badge")
 
     qfc = CanReachLocation("IR: QUEST FOR CHEESE") #I'm aware that none of these IR levels actually have requirements but uhhh. Preparing for move rando copium.
+    ir_rc = CanReachLocation("IR: RED COINS OF THE LIVING ROOM")
     gfor = CanReachLocation("IR: GOLD FRIEND ONION RINGS")
     ld = CanReachLocation("IR: LAUNDRY DAY")
     dogfight = CanReachLocation("TT: DOGFIGHT WITH THE WHOMP KING")
@@ -44,6 +45,13 @@ def set_location_rules(world: 'BTCMWorld'):
     tfe_blackstone = CanReachLocation("TFE: SCALE THE BLACKSTONE MOUNTAIN")
     tfe_ttt = CanReachLocation("TFE: THROUGH THE TALL TALL TOWERS")
     tfe_100c = CanReachLocation("TFE: EMPIRE'S WEALTH")
+    rt = CanReachLocation("ToT: RED TRIAL")
+    yt = CanReachLocation("ToT: YELLOW TRIAL")
+    gt = CanReachLocation("ToT: GREEN TRIAL")
+    ct = CanReachLocation("ToT: CYAN TRIAL")
+    bt = CanReachLocation("ToT: BLUE TRIAL")
+    pt = CanReachLocation("ToT: PINK TRIAL")
+    hoa = CanReachLocation("ToT: HEART OF AGAMEMNON")
 
     world.set_rule(world.get_location("RHR: CLIMB UP THE LAVAFALL"), lava_boost_badge) #Not that hard w/out it but you're clearly supposed to use it. Will make an option to turn this off.
     world.set_rule(world.get_location("RHR: TIMED RING CHALLENGE"), koopa_shell)
@@ -56,7 +64,7 @@ def set_location_rules(world: 'BTCMWorld'):
     world.set_rule(world.get_location("CC: THE GREAT TRAIN ROBBERY"), pandora_boxes)
     world.set_rule(world.get_location("IR: GOLD FRIEND ONION RINGS"), qfc)
     world.set_rule(world.get_location("IR: LAUNDRY DAY"), qfc)
-    world.set_rule(world.get_location("IR: FIRE!"), gfor & ld) #Don't need to check for Quest for Cheese because the previous 2 levels already require it.
+    world.set_rule(world.get_location("IR: FIRE!"), gfor & ld & ir_rc) #Don't need to check for Quest for Cheese because the previous 2 levels already require it.
     world.set_rule(world.get_location("IR: GIANT'S LOOSE CHANGE"), qfc | greed_badge) #Probably not possible to get 100 coins w/out greed. Feel free to prove me wrong.
     world.set_rule(world.get_location("IR: VACUUM CHASE"), pandora_boxes) #This is the point where I realized it's spelled "VACCUM CHASE" in-game but I'm not changing it rn.
     world.set_rule(world.get_location("IR: Costume in the kitchen sink"), qfc)
@@ -78,8 +86,34 @@ def set_location_rules(world: 'BTCMWorld'):
     world.set_rule(world.get_location("TFE: TEMPLE GUARDIAN"), tfe_ttt & tfe_100c)
     world.set_rule(world.get_location("ToT: RED TRIAL"), koopa_shell)
     world.set_rule(world.get_location("ToT: GREEN TRIAL"), vanetal_cap)
-    world.set_rule(world.get_location("ToT: HEART OF AGAMEMNON"), rocket_boots)
-    world.set_completion_rule(CanReachLocation("ToT: HEART OF AGAMEMNON"))
+    world.set_rule(world.get_location("RED TRIAL"), rt)
+    world.set_rule(world.get_location("YELLOW TRIAL"), yt)
+    world.set_rule(world.get_location("GREEN TRIAL"), gt)
+    world.set_rule(world.get_location("CYAN TRIAL"), ct)
+    world.set_rule(world.get_location("BLUE TRIAL"), bt)
+    world.set_rule(world.get_location("PINK TRIAL"), pt)
+    world.set_rule(world.get_location("ToT: HEART OF AGAMEMNON"), rocket_boots & Has("Trial Completion", count=3))
+    world.set_completion_rule(hoa)
+
+    world.set_rule(world.get_location("Sloppy Shell Sewers Red Coins"), koopa_shell)
+    world.set_rule(world.get_location("Lost City Red Coins"), rocket_boots)
+    world.set_rule(world.get_location("SwTS: Costume on the Popcorn Bucket"), koopa_shell & vanetal_cap)
+    world.set_rule(world.get_location("Showdown with the Showrunner Red Coins"), koopa_shell & vanetal_cap & rocket_boots) #Adding rocket boots because it makes the star 10x easier.
+    world.set_rule(world.get_location("Showdown with the Showrunner Defeat The Showrunner"), koopa_shell & vanetal_cap & rocket_boots)
+
+    world.set_rule(world.get_location("Snakio"), Has("Wallet"))
+    world.set_rule(world.get_location("Sign Game"), Has("Wallet", count=7) & fast_foot_badge)
+
+    world.set_rule(world.get_location("Star Radar Badge (Shop)"), Has("Wallet"))
+    world.set_rule(world.get_location("Double Time Badge (Shop)"), Has("Wallet"))
+    world.set_rule(world.get_location("HP Regen Badge (Shop)"), Has("Wallet",count=3))
+    world.set_rule(world.get_location("Greed Badge (Shop)"), Has("Wallet", count=2))
+    world.set_rule(world.get_location("Double Time Badge (Shop)"), Has("Wallet", count=6))
+    world.set_rule(world.get_location("Sticky Badge (Shop)"), Has("Wallet"))
+    world.set_rule(world.get_location("Feather Badge (Shop)"), Has("Wallet", count=5))
+    world.set_rule(world.get_location("Burn Badge (Shop)"), Has("Wallet"))
+    world.set_rule(world.get_location("Heal Plus Badge (Shop)"), Has("Wallet", count=3))
+    world.set_rule(world.get_location("Bottomless Badge (Shop)"), Has("Wallet"))
 
 
 
