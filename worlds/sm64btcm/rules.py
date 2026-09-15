@@ -35,6 +35,7 @@ def set_location_rules(world: 'BTCMWorld'):
     feather_badge = Has("Feather Badge")
     sticky_badge = Has("Sticky Badge")
     fast_foot_badge = Has("Fast Foot Badge")
+    hp_regen_badge = Has("HP Regen Badge")
 
     qfc = CanReachLocation("IR: QUEST FOR CHEESE") #I'm aware that none of these IR levels actually have requirements but uhhh. Preparing for move rando copium.
     ir_rc = CanReachLocation("IR: RED COINS OF THE LIVING ROOM")
@@ -92,7 +93,7 @@ def set_location_rules(world: 'BTCMWorld'):
     world.set_rule(world.get_location("CYAN TRIAL"), ct)
     world.set_rule(world.get_location("BLUE TRIAL"), bt)
     world.set_rule(world.get_location("PINK TRIAL"), pt)
-    world.set_rule(world.get_location("ToT: HEART OF AGAMEMNON"), rocket_boots & Has("Trial Completion", count=3))
+    world.set_rule(world.get_location("ToT: HEART OF AGAMEMNON"), rocket_boots & Has("Trial Completion", count=3) & hp_regen_badge)
     world.set_completion_rule(hoa)
 
     world.set_rule(world.get_location("Sloppy Shell Sewers Red Coins"), koopa_shell)
