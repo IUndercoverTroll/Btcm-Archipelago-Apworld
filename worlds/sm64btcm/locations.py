@@ -257,7 +257,7 @@ Observatory_badge_table = {
 }
 
 location_table = {**RHR_table,**LFF_table,**JS_table,**TPS_table,**VP_table,
-                  **CC_table,**IR_table,**RL_table,**TT_table,**BB_table,
+                  **CC_table,**IR_table,**RL_table,**TT_table,**TT_badge_table,**BB_table,
                   **SiSt_table,**OK_table,**HuHa_table,**TFE_table,**ToT_table,
                   **BotH_table,**SwtS_table,**SSS_table,**LS_table,**Minigame_table,
                   **Starting_room_badge_table,**Three_seed_room_badge_table,**Observatory_badge_table}
