@@ -159,7 +159,7 @@ class BTCMClient(BizHawkClient):
                         flags[5] = 1
                     case "Koopa Shell":
                         flags[6] = 1
-                    case Progressive Wallet:
+                    case "Wallet":
                         wallets += 1
                 if ("Badge" in item_name) | ("Burden" in item_name):
                     badge_flags[item.item-11] = 1

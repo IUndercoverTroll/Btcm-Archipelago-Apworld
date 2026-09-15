@@ -19,7 +19,7 @@ ITEM_NAME_TO_ID = {
     "Pandora Boxes": 7,
     "Vanetal Cap": 8,
     "Koopa Shell": 9,
-    Progressive Wallet: 10,
+    "Wallet": 10,
     "Lava Boost Badge": 11,
     "Fall Damage Badge": 12,
     "Defense Badge": 13,
@@ -70,7 +70,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Pandora Boxes": ItemClassification.progression,
     "Vanetal Cap": ItemClassification.progression,
     "Koopa Shell": ItemClassification.progression,
-    Progressive Wallet: ItemClassification.progression,
+    "Wallet": ItemClassification.progression,
     "Save Shatter Burden": ItemClassification.filler,
     "Withering Burden": ItemClassification.filler,
     "Brittle Burden": ItemClassification.filler,
@@ -120,7 +120,7 @@ def create_item_pool(world: BTCMWorld):
     for _ in range(40):
         item_pool.append(world.create_item("Cosmic Seed"))
     for _ in range(11):
-        item_pool.append(world.create_item(Progressive Wallet))
+        item_pool.append(world.create_item("Wallet"))
     for key in ITEM_NAME_TO_ID:
         if ITEM_NAME_TO_ID[key] < 4 or ITEM_NAME_TO_ID[key] == 10:
             continue
