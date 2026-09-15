@@ -101,19 +101,19 @@ def set_location_rules(world: 'BTCMWorld'):
     world.set_rule(world.get_location("Showdown with the Showrunner Red Coins"), koopa_shell & vanetal_cap & rocket_boots) #Adding rocket boots because it makes the star 10x easier.
     world.set_rule(world.get_location("Showdown with the Showrunner Defeat The Showrunner"), koopa_shell & vanetal_cap & rocket_boots)
 
-    world.set_rule(world.get_location("Snakio"), Has("Wallet"))
-    world.set_rule(world.get_location("Sign Game"), Has("Wallet", count=7) & fast_foot_badge)
+    world.set_rule(world.get_location("Snakio"), Has(Progressive Wallet))
+    world.set_rule(world.get_location("Sign Game"), Has(Progressive Wallet, count=7) & fast_foot_badge)
 
-    world.set_rule(world.get_location("Star Radar Badge (Shop)"), Has("Wallet"))
-    world.set_rule(world.get_location("Double Time Badge (Shop)"), Has("Wallet"))
-    world.set_rule(world.get_location("HP Regen Badge (Shop)"), Has("Wallet",count=3))
-    world.set_rule(world.get_location("Greed Badge (Shop)"), Has("Wallet", count=2))
-    world.set_rule(world.get_location("Double Time Badge (Shop)"), Has("Wallet", count=6))
-    world.set_rule(world.get_location("Sticky Badge (Shop)"), Has("Wallet"))
-    world.set_rule(world.get_location("Feather Badge (Shop)"), Has("Wallet", count=5))
-    world.set_rule(world.get_location("Burn Badge (Shop)"), Has("Wallet"))
-    world.set_rule(world.get_location("Heal Plus Badge (Shop)"), Has("Wallet", count=3))
-    world.set_rule(world.get_location("Bottomless Badge (Shop)"), Has("Wallet"))
+    world.set_rule(world.get_location("Star Radar Badge (Shop)"), Has(Progressive Wallet))
+    world.set_rule(world.get_location("Double Time Badge (Shop)"), Has(Progressive Wallet))
+    world.set_rule(world.get_location("HP Regen Badge (Shop)"), Has(Progressive Wallet,count=3))
+    world.set_rule(world.get_location("Greed Badge (Shop)"), Has(Progressive Wallet, count=2))
+    world.set_rule(world.get_location("Double Time Badge (Shop)"), Has(Progressive Wallet, count=6))
+    world.set_rule(world.get_location("Sticky Badge (Shop)"), Has(Progressive Wallet))
+    world.set_rule(world.get_location("Feather Badge (Shop)"), Has(Progressive Wallet, count=5))
+    world.set_rule(world.get_location("Burn Badge (Shop)"), Has(Progressive Wallet))
+    world.set_rule(world.get_location("Heal Plus Badge (Shop)"), Has(Progressive Wallet, count=3))
+    world.set_rule(world.get_location("Bottomless Badge (Shop)"), Has(Progressive Wallet))
 
 
 

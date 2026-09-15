@@ -11,7 +11,7 @@ btcm_items: Tuple[str, ...] = (
     "Pandora Boxes",
     "Vanetal Cap",
     "Koopa Shell",
-    "Wallet",
+    Progressive Wallet,
     "Lava Boost Badge",
     "Fall Damage Badge",
     "Defense Badge",
